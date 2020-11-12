@@ -7,6 +7,8 @@ import io.restassured.specification.RequestSpecification;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.testng.Assert.assertEquals;
+
 public class TriggerWeatherAPI {
     String uri = "http://api.openweathermap.org/data/2.5/weather";
     String city = "Bengaluru";
@@ -16,6 +18,7 @@ public class TriggerWeatherAPI {
     public Response createWeatherAPIRequest(){
         RequestSpecification request = RestAssured.given();
         Response response = request.queryParams(createQueryParams()).get(uri);
+        assertEquals(response.getStatusCode(),200);
         return response;
     }
 
